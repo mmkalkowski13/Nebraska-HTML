@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nebraska Output Records</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+    <span class="desktop-title"><a href="index.html" class="home-link">Nebraska Soccer</a></span>
+    <span class="mobile-title"><a href="index.html" class="home-link">Nebraska</a></span>
+
+    <div class="top-tabs">
+        <a href="index.html" class="tab-link">Schedule</a>
+        <a href="players.html" class="tab-link">Players</a>
+        <a href="teamstats.html" class="tab-link">Team Stats</a>
+    </div>
+
+    <input type="text" class="search-bar" placeholder="Search">
+</div>
+
+<!-- Game Selector -->
+<div class="game-selector-container">
+    <select id="game-selector" class="game-selector">
+        <option value="" selected disabled>Select a game</option>
+
+        <option value="louisville">Nebraska vs. Louisville</option>
+        <option value="south-dakota">Nebraska vs. South Dakota</option>
+        <option value="notre-dame">Nebraska vs. Notre Dame</option>
+        <option value="alabama">Nebraska vs. Alabama</option>
+        <option value="uno">Nebraska vs. UNO</option>
+        <option value="kansas-state">Nebraska vs. Kansas State</option>
+        <option value="indiana">Nebraska vs. Indiana</option>
+        <option value="iowa">Nebraska vs. Iowa</option>
+        <option value="washington">Nebraska vs. Washington</option>
+        <option value="michigan-state">Nebraska vs. Michigan State</option>
+        <option value="michigan">Nebraska vs. Michigan</option>
+        <option value="wisconsin">Nebraska vs. Wisconsin</option>
+        <option value="maryland">Nebraska vs. Maryland</option>
+        <option value="rutgers">Nebraska vs. Rutgers</option>
+        <option value="illinois">Nebraska vs. Illinois</option>
+        <option value="usc">Nebraska vs. USC</option>
+        <option value="ucla">Nebraska vs. UCLA</option>
+        <option value="purdue">Nebraska vs. Purdue</option>
+    </select>
+</div>
+
+
+<!-- GAME BOX -->
+<div id="game-box-3" class="game-box-3">
+
+    <!-- PHOTO -->
+    <div class="game-photo-container-3">
+        <img id="game-photo-3" class="game-photo-3" src="" alt="">
+    </div>
+
+    <!-- GAME NAME -->
+    <div id="game-name-3" class="game-name-3"></div>
+
+    <!-- BUTTONS -->
+    <div class="game-buttons-3">
+        <button id="btn-stats-3" class="game-tab-3 active">
+            Game Statistics
+        </button>
+
+        <button id="btn-xg-3" class="game-tab-3">
+            Expected Goals
+        </button>
+    </div>
+
+    <!-- CONTENT -->
+    <div id="game-box-content-3" class="game-box-content-3"></div>
+
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    let activeGame = null;
+
+
+    // =========================================================
+    // GAME DATA
+    // =========================================================
+
+    const games = {
+
+        louisville: {
+            name: "Nebraska vs. Louisville",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                   
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // SOUTH DAKOTA
+        // =========================================================
+
+        "south-dakota": {
+
+            name: "Nebraska vs. South Dakota",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // NOTRE DAME
+        // =========================================================
+
+        "notre-dame": {
+
+            name: "Nebraska vs. Notre Dame",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // ALABAMA
+        // =========================================================
+
+        "alabama": {
+
+            name: "Nebraska vs. Alabama",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // UNO
+        // =========================================================
+
+        "uno": {
+
+            name: "Nebraska vs. UNO",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // SKANSAS STATE
+        // =========================================================
+
+        "kansas-state": {
+
+            name: "Nebraska vs. Kansas State",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // INDIANA
+        // =========================================================
+
+        "indiana": {
+
+            name: "Nebraska vs. Indiana",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // IOWA
+        // =========================================================
+
+        "iowa": {
+
+            name: "Nebraska vs. Iowa",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // WASHINGTON
+        // =========================================================
+
+        "washington": {
+
+            name: "Nebraska vs. Washington",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // MICHIGAN STATE
+        // =========================================================
+
+        "michigan-state": {
+
+            name: "Nebraska vs. Michigan State",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // MICHIGAN
+        // =========================================================
+
+        "michigan": {
+
+            name: "Nebraska vs. Michigan",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // WISCONSIN
+        // =========================================================
+
+        "wisconsin": {
+
+            name: "Nebraska vs. Wisconsin",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // MARYLAND
+        // =========================================================
+
+        "maryland": {
+
+            name: "Nebraska vs. Maryland",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // RUTGERS
+        // =========================================================
+
+        "rutgers": {
+
+            name: "Nebraska vs. Rutgers",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // ILLINOIS
+        // =========================================================
+
+        "illinois": {
+
+            name: "Nebraska vs. South Dakota",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // USC
+        // =========================================================
+
+        "usc": {
+
+            name: "Nebraska vs. USC",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // UCLA
+        // =========================================================
+
+        "ucla": {
+
+            name: "Nebraska vs. UCLA",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        },
+
+
+        // =========================================================
+        // PURDUE
+        // =========================================================
+
+        "purdue": {
+
+            name: "Nebraska vs. Purdue",
+
+            photo: "https://huskers.com/imgproxy/yEekMvcdjz8S581f8GcAUmBiD1Lm7v1eO79E5MBSF-g/rs:fit:2560:0:0:0/q:95/aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL2h1c2tlcnMtY29tLXByb2QvMjAyNi8wNy8yNC9tRjRrRXhBazhVWklFTVhxZmFPdjNXWTgyVldHUEJueTdZelR6anloLmpwZw.jpg",
+
+            stats: {
+                minutes: 0,
+                totalActions: 0,
+                actionsPerMinute: 0,
+
+                attacking: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    goals: 0,
+                    assists: 0,
+                    keyPasses: 0,
+                    outplayFwd: 0,
+                    effectiveCrosses: 0,
+                    oneVOnes: 0,
+                    headers: 0,
+                    spEarned: 0,
+                    onTargetShots: 0,
+                    offTargetShots: 0
+                },
+
+                defending: {
+                    totalActions: 0,
+                    actionsPerMinute: 0,
+                    tackles: 0,
+                    interceptions: 0,
+                    fhRegains: 0,
+                    blocks: 0,
+                    clearances: 0,
+                    separations: 0,
+                    headers: 0,
+                    stopForwardCA: 0
+                }
+            },
+
+            xg: {
+                minutes: 0,
+                totalShots: 0,
+                totalXG: 0,
+
+                shots: [
+                    
+                ]
+            }
+        }
+    };
+
+
+    // =========================================================
+    // SELECT GAME
+    // =========================================================
+
+    const gameSelector = document.getElementById("game-selector");
+
+    gameSelector.addEventListener("change", () => {
+
+        activeGame = gameSelector.value;
+
+        openGameBox();
+
+    });
+
+
+    // =========================================================
+    // OPEN GAME BOX
+    // =========================================================
+
+    function openGameBox() {
+
+        const game = games[activeGame];
+
+        if (!game) {
+            return;
+        }
+
+        document.getElementById("game-box-3").style.display = "block";
+
+        document.getElementById("game-photo-3").src = game.photo;
+
+        document.getElementById("game-photo-3").alt = game.name;
+
+        document.getElementById("game-name-3").textContent = game.name;
+
+        loadGameStats();
+
+    }
+
+
+    // =========================================================
+    // GAME STATISTICS BUTTON
+    // =========================================================
+
+    document.getElementById("btn-stats-3").addEventListener("click", () => {
+
+        loadGameStats();
+
+    });
+
+
+    // =========================================================
+    // EXPECTED GOALS BUTTON
+    // =========================================================
+
+    document.getElementById("btn-xg-3").addEventListener("click", () => {
+
+        loadXG();
+
+    });
+
+
+    // =========================================================
+    // BUTTON STYLING
+    // =========================================================
+
+    function setActiveButton(button) {
+
+        document.querySelectorAll(".game-tab-3").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+    }
+
+
+    // =========================================================
+    // GAME STATISTICS
+    // =========================================================
+
+    function loadGameStats() {
+
+        const game = games[activeGame];
+
+        if (!game) return;
+
+        setActiveButton(document.getElementById("btn-stats-3"));
+
+        const stats = game.stats;
+
+        document.getElementById("game-box-content-3").innerHTML = `
+
+            <div class="top-stats-row-3">
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Minutes</span>
+                    <span class="stat-value-3">
+                        ${stats.minutes}
+                    </span>
+                </div>
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Total Actions</span>
+                    <span class="stat-value-3">
+                        ${stats.totalActions}
+                    </span>
+                </div>
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Actions / Min</span>
+                    <span class="stat-value-3">
+                        ${stats.actionsPerMinute}
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="split-stats-3">
+
+                <!-- ATTACKING -->
+
+                <div class="attack-col-3">
+
+                    <h3>Attacking</h3>
+
+                    <p class="stat-row-3">
+                        <span>Total Actions</span>
+                        <strong>${stats.attacking.totalActions}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Actions / Min</span>
+                        <strong>${stats.attacking.actionsPerMinute}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Goals</span>
+                        <strong>${stats.attacking.goals}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Assists</span>
+                        <strong>${stats.attacking.assists}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Key Passes</span>
+                        <strong>${stats.attacking.keyPasses}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Outplay FWD</span>
+                        <strong>${stats.attacking.outplayFwd}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Eff. Crosses</span>
+                        <strong>${stats.attacking.effectiveCrosses}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>1v1s</span>
+                        <strong>${stats.attacking.oneVOnes}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Headers</span>
+                        <strong>${stats.attacking.headers}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>SP Earned</span>
+                        <strong>${stats.attacking.spEarned}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>On-Target Shots</span>
+                        <strong>${stats.attacking.onTargetShots}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Off-Target Shots</span>
+                        <strong>${stats.attacking.offTargetShots}</strong>
+                    </p>
+
+                </div>
+
+
+                <!-- DEFENDING -->
+
+                <div class="defense-col">
+
+                    <h3>Defending</h3>
+
+                    <p class="stat-row-3">
+                        <span>Total Actions</span>
+                        <strong>${stats.defending.totalActions}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Actions / Min</span>
+                        <strong>${stats.defending.actionsPerMinute}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Tackles</span>
+                        <strong>${stats.defending.tackles}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Interceptions</span>
+                        <strong>${stats.defending.interceptions}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>FH Regains</span>
+                        <strong>${stats.defending.fhRegains}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Blocks</span>
+                        <strong>${stats.defending.blocks}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Clearances</span>
+                        <strong>${stats.defending.clearances}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Separations</span>
+                        <strong>${stats.defending.separations}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Headers</span>
+                        <strong>${stats.defending.headers}</strong>
+                    </p>
+
+                    <p class="stat-row-3">
+                        <span>Stop FWD/CA</span>
+                        <strong>${stats.defending.stopForwardCA}</strong>
+                    </p>
+
+                </div>
+
+            </div>
+        `;
+    }
+
+
+    // =========================================================
+    // EXPECTED GOALS
+    // =========================================================
+
+    function loadXG() {
+
+        const game = games[activeGame];
+
+        if (!game) return;
+
+        setActiveButton(document.getElementById("btn-xg-3"));
+
+        document.getElementById("game-box-content-3").innerHTML = `
+
+            <div class="xg-field-3">
+
+                <div class="sideline-3"></div>
+
+                <div class="endline-3"></div>
+
+                <div class="six-yard-box-3"></div>
+
+                <div class="eighteen-yard-box-3"></div>
+
+                <div class="penalty-arc-3"></div>
+
+                <div class="xg-dot-layer-3"></div>
+
+            </div>
+
+
+            <div id="shot-info-3">
+                Click a shot to see details.
+            </div>
+
+
+            <div class="top-stats-row-3">
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Minutes</span>
+                    <span class="stat-value-3">
+                        ${game.xg.minutes}
+                    </span>
+                </div>
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Total Shots</span>
+                    <span class="stat-value-3">
+                        ${game.xg.totalShots}
+                    </span>
+                </div>
+
+                <div class="top-stat-box-3">
+                    <span class="stat-label-3">Total xG</span>
+                    <span class="stat-value-3">
+                        ${game.xg.totalXG}
+                    </span>
+                </div>
+
+            </div>
+        `;
+
+
+        // Add shots AFTER the field exists
+
+        game.xg.shots.forEach(shot => {
+
+            addShotDot(
+                shot.x,
+                shot.y,
+                shot.minute,
+                shot.xg,
+                shot.shotType,
+                shot.situation,
+                shot.result,
+                shot.goal
+            );
+
+        });
+
+    }
+
+
+    // =========================================================
+    // ADD SHOT DOT
+    // =========================================================
+
+    function addShotDot(
+        x,
+        y,
+        minute,
+        xg,
+        shotType,
+        situation,
+        result,
+        goal
+    ) {
+
+        const layer = document.querySelector(".xg-dot-layer-3");
+
+        const dot = document.createElement("div");
+
+        dot.classList.add(
+            goal ? "xg-dot-goal-3" : "xg-dot-3"
+        );
+
+        dot.style.left = x + "%";
+
+        dot.style.top = y + "%";
+
+
+        dot.addEventListener("click", () => {
+
+            document.getElementById("shot-info-3").innerHTML = `
+
+                <strong>Minute:</strong> ${minute}
+                &nbsp; | &nbsp;
+
+                <strong>xG:</strong> ${xg}
+
+                <br>
+
+                <strong>Shot Type:</strong> ${shotType}
+                &nbsp; | &nbsp;
+
+                <strong>Situation:</strong> ${situation}
+
+                <br>
+
+                <strong>Result:</strong> ${result}
+
+            `;
+
+        });
+
+
+        layer.appendChild(dot);
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
